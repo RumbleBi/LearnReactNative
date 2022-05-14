@@ -1,31 +1,25 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local //java불러오기
- */
+import React from 'react'
+import DateHead from './components/DateHead'
+import AddToDo from './components/AddToDo'
+import Empty from './components/Empty'
+import { StyleSheet } from 'react-native'
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context'
 
-import React from 'react';
-import type {Node} from 'react'
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
-import Greeting from './components/Greeting'
-import Box from './components/Box'
 export default function App() {
-  const name = 'JSX';
-
+  const today = new Date()
   return (
-    <SafeAreaView>
-      <Text>하위~~</Text>
-      <Box/>
-    </SafeAreaView>
-  );
-};
+      <SafeAreaProvider>
+        <SafeAreaView style={styles.wrapper}edges={['bottom']}>{ /*props안에 배열형태로 선언, 하단 부분에만 SafeArea적용하겠다는 뜻*/ }
+          <DateHead date={today}/>
+          <Empty />
+          <AddToDo />
+        </SafeAreaView>
+      </SafeAreaProvider>
+  )
+}
+
+const styles = StyleSheet.create({
+  wrapper: {
+    flex: 1,
+  },
+})
